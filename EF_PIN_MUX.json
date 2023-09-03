@@ -31,7 +31,7 @@
         {
             "name": "fn_sel0",
             "size": "32",
-            "mode": "fw",
+            "mode": "rw",
             "init": "0",
             "fields": [
                 {
@@ -43,16 +43,16 @@
             ]
         },
         {
-            "name": "fn_sel0",
+            "name": "fn_sel1",
             "size": "32",
-            "mode": "fw",
+            "mode": "rw",
             "init": "0",
             "fields": [
                 {
-                    "name": "fn_sel0",
+                    "name": "fn_sel1",
                     "from": "0",
                     "size": "32",
-                    "port": "sel0"
+                    "port": "sel1"
                 }
             ]
         }
@@ -62,18 +62,18 @@
         {"name": "io_out", "port": "io_out", "size": "32", "dir":"output"},
         {"name": "io_oeb", "port": "io_oeb", "size": "32", "dir":"output"},
   
-        {"name": "p_in",  "port": "p_in",  "size": "127", "dir":"output"},
-        {"name": "p_out", "port": "p_out", "size": "127", "dir":"input"},
-        {"name": "p_oeb", "port": "p_oeb", "size": "127", "dir":"input"}
+        {"name": "p_in",  "port": "p_in",  "size": "128", "dir":"output"},
+        {"name": "p_out", "port": "p_out", "size": "128", "dir":"input"},
+        {"name": "p_oeb", "port": "p_oeb", "size": "128", "dir":"input"}
     ],
     "ports":[
       {"name": "io_in", "size": "32"},
       {"name": "io_out", "size": "32"},
       {"name": "io_oeb", "size": "32"},
 
-      {"name": "p_in", "size": "127"},
-      {"name": "p_out", "size": "127"},
-      {"name": "p_oeb", "size": "127"},
+      {"name": "p_in", "size": "128"},
+      {"name": "p_out", "size": "128"},
+      {"name": "p_oeb", "size": "128"},
 
       {"name": "sel0", "size": "31"},
       {"name": "sel1", "size": "31"}
