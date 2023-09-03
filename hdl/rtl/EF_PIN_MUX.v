@@ -51,7 +51,7 @@
 `timescale          1ns/1ns
 `default_nettype    none
 
-module pin_mux #(parameter COUNT=32) (
+module EF_PIN_MUX #(parameter COUNT=32) (
 	// I/O Pads facing ports
 	input  wire [COUNT-1:0] io_in,
 	output wire [COUNT-1:0] io_out,
