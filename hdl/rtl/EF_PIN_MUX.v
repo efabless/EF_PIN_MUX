@@ -62,7 +62,7 @@ module EF_PIN_MUX #(parameter COUNT=32) (
 	input  wire [COUNT*4-1:0]	p_out,
 	input  wire [COUNT*4-1:0]	p_oeb,
 	
-	// Peripheral Selection
+	// Peripheral Selection (2 selection bits per pin)
 	input wire [COUNT-1:0] 	    sel0,
     input wire [COUNT-1:0] 	    sel1
 
@@ -76,11 +76,11 @@ module EF_PIN_MUX #(parameter COUNT=32) (
 		end
 
 		for(i=0; i<COUNT;i=i+1) begin : O_ASSIGN
-			assign io_out[i] = p_out[i*4+sel];
+			assign io_out[i] = p_out[i*4 + (sel[i*2+1:i*2])];
 		end
 		
 		for(i=0; i<COUNT;i=i+1) begin : OE_ASSIGN
-			assign io_oeb[i] = p_oeb[i*4+sel];
+			assign io_oeb[i] = p_oeb[i*4 + (sel[i*2+1:i*2])];
 		end
 		
 	endgenerate
