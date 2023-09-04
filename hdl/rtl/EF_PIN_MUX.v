@@ -51,7 +51,7 @@
 `timescale          1ns/1ns
 `default_nettype    none
 
-module EF_PIN_MUX #(parameter COUNT=32) (
+module EF_PIN_MUX #(parameter COUNT=16) (
 	// I/O Pads facing ports
 	input  wire [COUNT-1:0] io_in,
 	output wire [COUNT-1:0] io_out,
@@ -63,12 +63,11 @@ module EF_PIN_MUX #(parameter COUNT=32) (
 	input  wire [COUNT*4-1:0]	p_oeb,
 	
 	// Peripheral Selection (2 selection bits per pin)
-	input wire [COUNT-1:0] 	    sel0,
-    input wire [COUNT-1:0] 	    sel1
-
+	input wire [COUNT*2-1:0]    sel,
 );
 
-    wire [COUNT*2-1:0]          sel = {sel1, sel0};
+    // count cannot be more than 16
+
 	generate
 		genvar i;
 		for(i=0; i<COUNT;i=i+1) begin : IN_ASSIGN
