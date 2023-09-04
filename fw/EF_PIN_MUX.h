@@ -22,9 +22,7 @@
 
 #define EF_PIN_MUX_BASE				0x00000000
 
-#define	EF_PIN_MUX_FN_SEL0_REG_ADDR		(EF_PIN_MUX_BASE+0x0)
-#define	EF_PIN_MUX_FN_SEL1_REG_ADDR		(EF_PIN_MUX_BASE+0x4)
+#define	EF_PIN_MUX_FN_SEL_REG_ADDR		(EF_PIN_MUX_BASE+0x0)
 
 
-volatile unsigned int * ef_pin_mux_fn_sel0	= (volatile unsigned int *) EF_PIN_MUX_FN_SEL0_REG_ADDR;
-volatile unsigned int * ef_pin_mux_fn_sel1	= (volatile unsigned int *) EF_PIN_MUX_FN_SEL1_REG_ADDR;
+volatile unsigned int * ef_pin_mux_fn_sel	= (volatile unsigned int *) EF_PIN_MUX_FN_SEL_REG_ADDR;

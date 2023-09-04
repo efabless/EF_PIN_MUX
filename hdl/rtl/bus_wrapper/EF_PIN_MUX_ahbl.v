@@ -46,8 +46,7 @@ module EF_PIN_MUX_ahbl (
 	output	wire [31:0]	HRDATA,
 	output	wire 		HREADYOUT
 );
-	localparam[15:0] FN_SEL0_REG_ADDR = 16'h0000;
-	localparam[15:0] FN_SEL1_REG_ADDR = 16'h0004;
+	localparam[15:0] FN_SEL_REG_ADDR = 16'h0000;
 
 	reg             last_HSEL;
 	reg [31:0]      last_HADDR;
@@ -63,11 +62,9 @@ module EF_PIN_MUX_ahbl (
 		end
 	end
 
-	reg	[31:0]	FN_SEL0_REG;
-	reg	[31:0]	FN_SEL1_REG;
+	reg	[31:0]	FN_SEL_REG;
 
-	wire[31:0]	sel0	= FN_SEL0_REG[31:0];
-	wire[31:0]	sel1	= FN_SEL1_REG[31:0];
+	wire[31:0]	sel	= FN_SEL_REG[31:0];
 	wire		ahbl_valid	= last_HSEL & last_HTRANS[1];
 	wire		ahbl_we	= last_HWRITE & ahbl_valid;
 	wire		ahbl_re	= ~last_HWRITE & ahbl_valid;
@@ -81,15 +78,12 @@ module EF_PIN_MUX_ahbl (
 		.p_in(p_in),
 		.p_out(p_out),
 		.p_oeb(p_oeb),
-		.sel0(sel0),
-		.sel1(sel1)
+		.sel(sel)
 	);
 
-	`AHB_REG(FN_SEL0_REG, 0)
-	`AHB_REG(FN_SEL1_REG, 0)
+	`AHB_REG(FN_SEL_REG, 0)
 	assign	HRDATA = 
-			(last_HADDR == FN_SEL0_REG_ADDR) ? FN_SEL0_REG :
-			(last_HADDR == FN_SEL1_REG_ADDR) ? FN_SEL1_REG :
+			(last_HADDR == FN_SEL_REG_ADDR) ? FN_SEL_REG :
 			32'hDEADBEEF;
 
 
