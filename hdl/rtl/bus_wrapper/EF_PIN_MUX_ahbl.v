@@ -28,12 +28,12 @@
 `define		AHB_ICR(sz)				`AHB_BLOCK(ICR_REG, sz'b0) else if(ahbl_we & (last_HADDR==ICR_REG_ADDR)) ICR_REG <= HWDATA; else ICR_REG <= sz'd0;
 
 module EF_PIN_MUX_ahbl (
-	input	wire [31:0]	io_in,
-	output	wire [31:0]	io_out,
-	output	wire [31:0]	io_oeb,
-	output	wire [127:0]	p_in,
-	input	wire [127:0]	p_out,
-	input	wire [127:0]	p_oeb,
+	input	wire [15:0]	io_in,
+	output	wire [15:0]	io_out,
+	output	wire [15:0]	io_oeb,
+	output	wire [63:0]	p_in,
+	input	wire [63:0]	p_out,
+	input	wire [63:0]	p_oeb,
 	input	wire 		HCLK,
 	input	wire 		HRESETn,
 	input	wire [31:0]	HADDR,
