@@ -63,7 +63,7 @@ module EF_PIN_MUX #(parameter COUNT=16) (
 	input  wire [COUNT*4-1:0]	p_oeb,
 	
 	// Peripheral Selection (2 selection bits per pin)
-	input wire [COUNT*2-1:0]    sel,
+	input wire [COUNT*2-1:0]    sel
 );
 
     // count cannot be more than 16
