@@ -29,30 +29,16 @@
     },
     "regs": [
         {
-            "name": "fn_sel0",
+            "name": "fn_sel",
             "size": "32",
             "mode": "rw",
             "init": "0",
             "fields": [
                 {
-                    "name": "fn_sel0",
+                    "name": "fn_sel",
                     "from": "0",
                     "size": "32",
-                    "port": "sel0"
-                }
-            ]
-        },
-        {
-            "name": "fn_sel1",
-            "size": "32",
-            "mode": "rw",
-            "init": "0",
-            "fields": [
-                {
-                    "name": "fn_sel1",
-                    "from": "0",
-                    "size": "32",
-                    "port": "sel1"
+                    "port": "sel"
                 }
             ]
         }
@@ -75,8 +61,7 @@
       {"name": "p_out", "size": "128"},
       {"name": "p_oeb", "size": "128"},
 
-      {"name": "sel0", "size": "31"},
-      {"name": "sel1", "size": "31"}
+      {"name": "sel", "size": "32"}
     ]
         
 }
