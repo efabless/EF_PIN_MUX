@@ -68,10 +68,19 @@ module EF_PIN_MUX #(parameter COUNT=16) (
 
     // count cannot be more than 16
 
+	// Decode the selection to enable the input of the selected function only
+	wire [3:0] dec[COUNT-1:0];
+	generate
+		genvar j;
+		for(j=0; j<COUNT;j=j+1) begin : DECODER
+			assign dec[j] = 1 << sel[j*2+1:j*2];
+		end
+	endgenerate
+
 	generate
 		genvar i;
 		for(i=0; i<COUNT;i=i+1) begin : IN_ASSIGN
-			assign p_in[(i*4+3):(i*4)] = {4{io_in[i]}};
+			assign p_in[(i*4+3):(i*4)] = {4{io_in[i]}} & dec[i];
 		end
 
 		for(i=0; i<COUNT;i=i+1) begin : O_ASSIGN
