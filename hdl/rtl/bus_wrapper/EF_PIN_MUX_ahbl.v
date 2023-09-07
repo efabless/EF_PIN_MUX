@@ -24,8 +24,8 @@
 `default_nettype	none
 
 `define		AHB_BLOCK(name, init)	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) name <= init;
-`define		AHB_REG(name, init)		`AHB_BLOCK(name, init) else if(ahbl_we & (last_HADDR==``name``_ADDR)) name <= HWDATA;
-`define		AHB_ICR(sz)				`AHB_BLOCK(ICR_REG, sz'b0) else if(ahbl_we & (last_HADDR==ICR_REG_ADDR)) ICR_REG <= HWDATA; else ICR_REG <= sz'd0;
+`define		AHB_REG(name, init)		`AHB_BLOCK(name, init) else if(ahbl_we & (last_HADDR[15:0]==``name``_ADDR)) name <= HWDATA;
+`define		AHB_ICR(sz)				`AHB_BLOCK(ICR_REG, sz'b0) else if(ahbl_we & (last_HADDR[15:0]==ICR_REG_ADDR)) ICR_REG <= HWDATA; else ICR_REG <= sz'd0;
 
 module EF_PIN_MUX_ahbl (
 	input	wire [15:0]	io_in,
@@ -83,7 +83,7 @@ module EF_PIN_MUX_ahbl (
 
 	`AHB_REG(FN_SEL_REG, 0)
 	assign	HRDATA = 
-			(last_HADDR == FN_SEL_REG_ADDR) ? FN_SEL_REG :
+			(last_HADDR[15:0] == FN_SEL_REG_ADDR) ? FN_SEL_REG :
 			32'hDEADBEEF;
 
 
