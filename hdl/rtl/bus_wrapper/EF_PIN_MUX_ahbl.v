@@ -83,7 +83,7 @@ module EF_PIN_MUX_ahbl (
 
 	`AHB_REG(FN_SEL_REG, 0, 32)
 	assign	HRDATA = 
-			(last_HADDR == FN_SEL_REG_ADDR) ? FN_SEL_REG :
+			(last_HADDR[15:0] == FN_SEL_REG_ADDR) ? FN_SEL_REG :
 			32'hDEADBEEF;
 
 

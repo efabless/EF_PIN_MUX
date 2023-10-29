@@ -83,7 +83,7 @@ module EF_PIN_MUX_ahbl (
 
 	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) FN_SEL_REG <= 0; else if(ahbl_we & (last_HADDR[15:0]==FN_SEL_REG_ADDR)) FN_SEL_REG <= HWDATA[32-1:0];
 	assign	HRDATA = 
-			(last_HADDR == FN_SEL_REG_ADDR) ? FN_SEL_REG :
+			(last_HADDR[15:0] == FN_SEL_REG_ADDR) ? FN_SEL_REG :
 			32'hDEADBEEF;
 
 
