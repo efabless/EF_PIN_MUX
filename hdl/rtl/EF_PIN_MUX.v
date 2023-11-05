@@ -66,7 +66,6 @@ module EF_PIN_MUX #(parameter COUNT=16) (
 	input wire [COUNT*2-1:0]    sel
 );
 
-    // count cannot be more than 16
 
 	// Decode the selection to enable the input of the selected function only
 	wire [3:0] dec[COUNT-1:0];
