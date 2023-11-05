@@ -7,7 +7,7 @@
         "license": "APACHE 2.0",
         "author": "Mohamed Shalan",
         "email": "mshalan@efabless.com",
-        "version": "v1.0.2",
+        "version": "v2.0.0",
         "date": "3-30-2023",
         "category": "digital",
         "tags": [
@@ -29,7 +29,7 @@
     },
     "regs": [
         {
-            "name": "fn_sel",
+            "name": "fn_sel0",
             "size": "32",
             "mode": "rw",
             "init": "0",
@@ -38,30 +38,44 @@
                     "name": "fn_sel",
                     "from": "0",
                     "size": "32",
-                    "port": "sel"
+                    "port": "sel[31:0]"
+                }
+            ]
+        },
+        {
+            "name": "fn_sel1",
+            "size": "10",
+            "mode": "rw",
+            "init": "0",
+            "fields": [
+                {
+                    "name": "fn_sel",
+                    "from": "0",
+                    "size": "10",
+                    "port": "sel[41:32]"
                 }
             ]
         }
     ],
     "interface": [
-        {"name": "io_in",  "port": "io_in",  "size": "16", "dir":"input"},
-        {"name": "io_out", "port": "io_out", "size": "16", "dir":"output"},
-        {"name": "io_oeb", "port": "io_oeb", "size": "16", "dir":"output"},
+        {"name": "io_in",  "port": "io_in",  "size": "21", "dir":"input"},
+        {"name": "io_out", "port": "io_out", "size": "21", "dir":"output"},
+        {"name": "io_oeb", "port": "io_oeb", "size": "21", "dir":"output"},
   
-        {"name": "p_in",  "port": "p_in",  "size": "64", "dir":"output"},
-        {"name": "p_out", "port": "p_out", "size": "64", "dir":"input"},
-        {"name": "p_oeb", "port": "p_oeb", "size": "64", "dir":"input"}
+        {"name": "p_in",  "port": "p_in",  "size": "84", "dir":"output"},
+        {"name": "p_out", "port": "p_out", "size": "84", "dir":"input"},
+        {"name": "p_oeb", "port": "p_oeb", "size": "84", "dir":"input"}
     ],
     "ports":[
-      {"name": "io_in", "size": "16"},
-      {"name": "io_out", "size": "16"},
-      {"name": "io_oeb", "size": "16"},
+      {"name": "io_in", "size": "21"},
+      {"name": "io_out", "size": "21"},
+      {"name": "io_oeb", "size": "21"},
 
-      {"name": "p_in", "size": "64"},
-      {"name": "p_out", "size": "64"},
-      {"name": "p_oeb", "size": "64"},
+      {"name": "p_in", "size": "84"},
+      {"name": "p_out", "size": "84"},
+      {"name": "p_oeb", "size": "84"},
 
-      {"name": "sel", "size": "32"}
+      {"name": "sel", "size": "42"}
     ]
         
 }
