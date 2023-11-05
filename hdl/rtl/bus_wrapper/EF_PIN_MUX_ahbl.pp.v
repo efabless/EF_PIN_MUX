@@ -27,13 +27,15 @@
 
 
 
-module EF_PIN_MUX_ahbl (
-	input	wire [15:0]	io_in,
-	output	wire [15:0]	io_out,
-	output	wire [15:0]	io_oeb,
-	output	wire [63:0]	p_in,
-	input	wire [63:0]	p_out,
-	input	wire [63:0]	p_oeb,
+module EF_PIN_MUX_ahbl #(
+    parameter PIN_COUNT = 16	
+) (
+	input	wire [PIN_COUNT-1:0]	io_in,
+	output	wire [PIN_COUNT-1:0]	io_out,
+	output	wire [PIN_COUNT-1:0]	io_oeb,
+	output	wire [PIN_COUNT*4-1:0]	p_in,
+	input	wire [PIN_COUNT*4-1:0]	p_out,
+	input	wire [PIN_COUNT*4-1:0]	p_oeb,
 	input	wire 		HCLK,
 	input	wire 		HRESETn,
 	input	wire [31:0]	HADDR,
@@ -76,7 +78,8 @@ module EF_PIN_MUX_ahbl (
 	wire		_clk_	= HCLK;
 	wire		_rst_	= ~HRESETn;
 
-	EF_PIN_MUX inst_to_wrap (
+	EF_PIN_MUX #(.COUNT(PIN_COUNT))
+	inst_to_wrap (
 		.io_in(io_in),
 		.io_out(io_out),
 		.io_oeb(io_oeb),
