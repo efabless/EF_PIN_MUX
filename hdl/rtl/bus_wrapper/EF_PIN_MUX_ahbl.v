@@ -27,13 +27,13 @@
 `define		AHB_REG(name, init, size)	`AHB_BLOCK(name, init) else if(ahbl_we & (last_HADDR[15:0]==``name``_ADDR)) name <= HWDATA[``size``-1:0];
 `define		AHB_ICR(size)				`AHB_BLOCK(ICR_REG, size'b0) else if(ahbl_we & (last_HADDR[15:0]==ICR_REG_ADDR)) ICR_REG <= HWDATA[``size``-1:0]; else ICR_REG <= ``size``'d0;
 
-module EF_PIN_MUX_ahbl (
-	input	wire [20:0]	io_in,
-	output	wire [20:0]	io_out,
-	output	wire [20:0]	io_oeb,
-	output	wire [83:0]	p_in,
-	input	wire [83:0]	p_out,
-	input	wire [83:0]	p_oeb,
+module EF_PIN_MUX_ahbl ( // The module is not parametrized with the number of IOs because registers for the function select need to be added according to the number of IOs
+	input	wire [47:0]		io_in,
+	output	wire [47:0]		io_out,
+	output	wire [47:0]		io_oeb,
+	output	wire [191:0]	p_in,
+	input	wire [191:0]	p_out,
+	input	wire [191:0]	p_oeb,
 	input	wire 		HCLK,
 	input	wire 		HRESETn,
 	input	wire [31:0]	HADDR,
@@ -48,6 +48,7 @@ module EF_PIN_MUX_ahbl (
 );
 	localparam[15:0] FN_SEL0_REG_ADDR = 16'h0000;
 	localparam[15:0] FN_SEL1_REG_ADDR = 16'h0004;
+	localparam[15:0] FN_SEL2_REG_ADDR = 16'h0008;
 
 	reg             last_HSEL;
 	reg [31:0]      last_HADDR;
@@ -69,18 +70,24 @@ module EF_PIN_MUX_ahbl (
 	end
 
 	reg	[31:0]	FN_SEL0_REG;
-	reg	[9:0]	FN_SEL1_REG;
+	reg	[31:0]	FN_SEL1_REG;
+	reg	[31:0]	FN_SEL2_REG;
 
-	wire[41:0]	sel;
+
+	wire[95:0]	sel;
 	assign	sel[31:0]	= FN_SEL0_REG[31:0];
-	assign	sel[41:32]	= FN_SEL1_REG[9:0];
+	assign	sel[63:32]	= FN_SEL1_REG[31:0];
+	assign	sel[95:64]	= FN_SEL2_REG[31:0];
+
+	// wire [COUNT*2:0] sel;
+
 	wire		ahbl_valid	= last_HSEL & last_HTRANS[1];
 	wire		ahbl_we	= last_HWRITE & ahbl_valid;
 	wire		ahbl_re	= ~last_HWRITE & ahbl_valid;
 	wire		_clk_	= HCLK;
 	wire		_rst_	= ~HRESETn;
 
-	EF_PIN_MUX #(.COUNT(21))
+	EF_PIN_MUX #(.COUNT(48))
 	inst_to_wrap (
 		.io_in(io_in),
 		.io_out(io_out),
@@ -92,11 +99,13 @@ module EF_PIN_MUX_ahbl (
 	);
 
 	`AHB_REG(FN_SEL0_REG, 0, 32)
-	`AHB_REG(FN_SEL1_REG, 0, 10)
+	`AHB_REG(FN_SEL1_REG, 0, 32)
+	`AHB_REG(FN_SEL2_REG, 0, 32)
 
 	assign	HRDATA = 
 			(last_HADDR[15:0] == FN_SEL0_REG_ADDR) ? FN_SEL0_REG :
 			(last_HADDR[15:0] == FN_SEL1_REG_ADDR) ? FN_SEL1_REG :
+			(last_HADDR[15:0] == FN_SEL2_REG_ADDR) ? FN_SEL2_REG :
 			32'hDEADBEEF;
 
 
