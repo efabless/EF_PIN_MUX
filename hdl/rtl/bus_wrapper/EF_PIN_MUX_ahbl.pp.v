@@ -28,12 +28,12 @@
 
 
 module EF_PIN_MUX_ahbl ( // The module is not parametrized with the number of IOs because registers for the function select need to be added according to the number of IOs
-	input	wire [47:0]		io_in,
-	output	wire [47:0]		io_out,
-	output	wire [47:0]		io_oeb,
-	output	wire [191:0]	p_in,
-	input	wire [191:0]	p_out,
-	input	wire [191:0]	p_oeb,
+	input	wire [37:0]		io_in,
+	output	wire [37:0]		io_out,
+	output	wire [37:0]		io_oeb,
+	output	wire [151:0]	p_in,
+	input	wire [151:0]	p_out,
+	input	wire [151:0]	p_oeb,
 	input	wire 		HCLK,
 	input	wire 		HRESETn,
 	input	wire [31:0]	HADDR,
@@ -71,13 +71,13 @@ module EF_PIN_MUX_ahbl ( // The module is not parametrized with the number of IO
 
 	reg	[31:0]	FN_SEL0_REG;
 	reg	[31:0]	FN_SEL1_REG;
-	reg	[31:0]	FN_SEL2_REG;
+	reg	[11:0]	FN_SEL2_REG;
 
 
-	wire[95:0]	sel;
+	wire[75:0]	sel;
 	assign	sel[31:0]	= FN_SEL0_REG[31:0];
 	assign	sel[63:32]	= FN_SEL1_REG[31:0];
-	assign	sel[95:64]	= FN_SEL2_REG[31:0];
+	assign	sel[75:64]	= FN_SEL2_REG[11:0];
 
 	// wire [COUNT*2:0] sel;
 
@@ -87,7 +87,7 @@ module EF_PIN_MUX_ahbl ( // The module is not parametrized with the number of IO
 	wire		_clk_	= HCLK;
 	wire		_rst_	= ~HRESETn;
 
-	EF_PIN_MUX #(.COUNT(48))
+	EF_PIN_MUX #(.COUNT(38))
 	inst_to_wrap (
 		.io_in(io_in),
 		.io_out(io_out),
