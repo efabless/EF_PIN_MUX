@@ -1,0 +1,107 @@
+---
+info:
+  name: EF_PIN_MUX
+  description: Pin Multiplexing Fabric; 32 pins x four functions per pin.
+  repo: github.com/efabless/EF_PIN_MUX
+  owner: Efabless Corp.
+  license: APACHE 2.0
+  author: Mohamed Shalan
+  email: mshalan@efabless.com
+  version: v2.0.3
+  date: 29-05-2024
+  category: digital
+  tags:
+  - peripheral
+  bus:
+  - generic
+  type: soft
+  status: verified
+  cell_count:
+    - IP: 
+    - APB: 
+    - AHBL: 
+    - WB: 
+  width: '0.0'
+  height: '0.0'
+  technology: n/a
+  clock_freq_mhz:
+    - IP: 
+    - APB: 
+    - AHBL: 
+    - WB: 
+  digital_supply_voltage: n/a
+  analog_supply_voltage: n/a
+  irq_reg_offset: 0xFF00
+  fifo_reg_offset: 0xFE00
+
+ports:
+- name: sel
+  width: 96
+  direction: input 
+  description: 
+
+external_interface:
+- name: io_in
+  port: io_in
+  width: 48
+  direction: input
+  description: 
+- name: io_out
+  port: io_out
+  width: 48
+  direction: output
+  description: 
+- name: io_oeb
+  port: io_oeb
+  width: 48
+  direction: output
+  description: 
+- name: p_in
+  port: p_in
+  width: 192
+  direction: output 
+  description: 
+- name: p_out
+  port: p_out
+  width: 192
+  direction: input
+  description: 
+- name: p_oeb
+  port: p_oeb
+  width: 192
+  direction: input
+  description: 
+
+clock:
+  name: clk
+
+reset:
+  name: rst_n
+  level: 0
+
+registers:
+- name: fn_sel0
+  size: 32
+  mode: w
+  fifo: no
+  offset: 0
+  bit_access: no
+  write_port: sel[31:0]
+  description:
+- name: fn_sel1
+  size: 32
+  mode: w
+  fifo: no
+  offset: 4
+  bit_access: no
+  write_port: sel[63:32]
+  description:
+- name: fn_sel2
+  size: 32
+  mode: w
+  fifo: no
+  offset: 8
+  bit_access: no
+  write_port: sel[95:64]
+  description:
+
