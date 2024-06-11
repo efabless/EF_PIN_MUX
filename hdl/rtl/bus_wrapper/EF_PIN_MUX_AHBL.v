@@ -61,8 +61,6 @@ module EF_PIN_MUX_AHBL (
 	`AHBL_REG(fn_sel2_REG, 0, 32)
 
 	EF_PIN_MUX instance_to_wrap (
-		.clk(clk),
-		.rst_n(rst_n),
 		.sel(sel),
 		.io_in(io_in),
 		.io_out(io_out),

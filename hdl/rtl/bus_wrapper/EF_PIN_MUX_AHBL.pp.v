@@ -90,8 +90,6 @@ module EF_PIN_MUX_AHBL (
                                             fn_sel2_REG <= HWDATA[32-1:0];
 
 	EF_PIN_MUX instance_to_wrap (
-		.clk(clk),
-		.rst_n(rst_n),
 		.sel(sel),
 		.io_in(io_in),
 		.io_out(io_out),
