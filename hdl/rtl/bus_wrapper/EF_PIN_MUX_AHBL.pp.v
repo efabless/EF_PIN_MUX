@@ -89,7 +89,7 @@ module EF_PIN_MUX_AHBL (
                                         else if(ahbl_we & (last_HADDR[16-1:0]==fn_sel2_REG_OFFSET))
                                             fn_sel2_REG <= HWDATA[32-1:0];
 
-	EF_PIN_MUX instance_to_wrap (
+	EF_PIN_MUX #(.COUNT(48)) instance_to_wrap (
 		.sel(sel),
 		.io_in(io_in),
 		.io_out(io_out),

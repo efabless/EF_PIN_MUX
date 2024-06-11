@@ -60,7 +60,7 @@ module EF_PIN_MUX_AHBL (
 	assign	sel[95:64] = fn_sel2_REG;
 	`AHBL_REG(fn_sel2_REG, 0, 32)
 
-	EF_PIN_MUX instance_to_wrap (
+	EF_PIN_MUX #(.COUNT(48)) instance_to_wrap (
 		.sel(sel),
 		.io_in(io_in),
 		.io_out(io_out),
