@@ -12,7 +12,7 @@ enum gpio_select{GPIO8 = 0, GPIO9 = 2, GPIO10 = 4, GPIO11 = 6, GPIO12 = 8, GPIO1
                 GPIO24 = 32, GPIO25 = 34, GPIO26 = 36, GPIO27 = 38, GPIO28 = 40, GPIO29 = 42, GPIO30 = 44, GPIO31 = 46,
                 GPIO32 = 48, GPIO33 = 50, GPIO34 = 52, GPIO35 = 54, GPIO36 = 56, GPIO37 = 58, GPIO38 = 60, GPIO39 = 62,
                 GPIO40 = 64, GPIO41 = 66, GPIO42 = 68, GPIO43 = 70, GPIO44 = 72, GPIO45 = 74, GPIO46 = 76, GPIO47 = 78,
-                GPIO40 = 80, GPIO41 = 82, GPIO42 = 84, GPIO43 = 86, GPIO44 = 88, GPIO45 = 90, GPIO46 = 92, GPIO47 = 94};
+                GPIO48 = 80, GPIO49 = 82, GPIO50 = 84, GPIO51 = 86, GPIO52 = 88, GPIO53 = 90, GPIO54 = 92, GPIO55 = 94};
 
 void EF_PinMux_writeSelect(uint32_t pin_mux_base, int select);
 
