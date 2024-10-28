@@ -36,31 +36,31 @@ int EF_PinMux_readSelect3(uint32_t pin_mux_base){
     return (pin_mux->fn_sel2);
 }
 
-void EF_PinMux_writeSelectGpio1(uint32_t pin_mux_base, enum gpio_select gpio, enum select_types select){
+void EF_PinMux_writeSelectGpio1(uint32_t pin_mux_base, enum pin_mux_gpio gpio, enum select_types select){
 
-    int select_val = EF_PinMux_readSelect(pin_mux_base);
+    volatile int select_val = EF_PinMux_readSelect(pin_mux_base);
     select_val &= ~(0x3 << gpio); // zero the needed bits
     select_val |= select << gpio;
     EF_PinMux_writeSelect(pin_mux_base, select_val);
 }
 
-void EF_PinMux_writeSelectGpio2(uint32_t pin_mux_base, enum gpio_select gpio, enum select_types select){
+void EF_PinMux_writeSelectGpio2(uint32_t pin_mux_base, enum pin_mux_gpio gpio, enum select_types select){
 
-    int select_val = EF_PinMux_readSelect2(pin_mux_base);
+    volatile int select_val = EF_PinMux_readSelect2(pin_mux_base);
     select_val &= ~(0x3 << gpio); // zero the needed bits
     select_val |= select << gpio;
     EF_PinMux_writeSelect2(pin_mux_base, select_val);
 }
 
-void EF_PinMux_writeSelectGpio3(uint32_t pin_mux_base, enum gpio_select gpio, enum select_types select){
+void EF_PinMux_writeSelectGpio3(uint32_t pin_mux_base, enum pin_mux_gpio gpio, enum select_types select){
 
-    int select_val = EF_PinMux_readSelect3(pin_mux_base);
+    volatile int select_val = EF_PinMux_readSelect3(pin_mux_base);
     select_val &= ~(0x3 << gpio); // zero the needed bits
     select_val |= select << gpio;
     EF_PinMux_writeSelect3(pin_mux_base, select_val);
 }
 
-void EF_PinMux_writeSelectGpio(uint32_t pin_mux_base, enum gpio_select gpio, enum select_types select){
+void EF_PinMux_writeSelectGpio(uint32_t pin_mux_base, enum pin_mux_gpio gpio, enum select_types select){
 
     if (gpio > 62){
         EF_PinMux_writeSelectGpio3(pin_mux_base, gpio - 32, select);
@@ -72,9 +72,9 @@ void EF_PinMux_writeSelectGpio(uint32_t pin_mux_base, enum gpio_select gpio, enu
     }
 }
 
-int EF_PinMux_readSelect4Gpio(uint32_t pin_mux_base, enum gpio_select gpio){
+int EF_PinMux_readSelect4Gpio(uint32_t pin_mux_base, enum pin_mux_gpio gpio){
 
-    int select_val = EF_PinMux_readSelect(pin_mux_base) >> gpio;
+    volatile  int select_val = EF_PinMux_readSelect(pin_mux_base) >> gpio;
     return select_val & 0x3;
 }
 #endif // PIN_MUX_H
